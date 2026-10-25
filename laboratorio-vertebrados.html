@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eaf6ff">
+<title>Laboratorio de vertebrados | 3.º Primaria</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#edf6ff;color:#172a50;font-size:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 5%,#c7efff 0,transparent 34%),radial-gradient(circle at 90% 70%,#daffe9 0,transparent 38%),#edf6ff}
+button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible,.animal:focus-visible{outline:4px solid #ffb540;outline-offset:3px}button:disabled{cursor:default}a{color:#0b5b98}
+.shell{max-width:1020px;margin:0 auto;padding:18px 18px 42px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.brand{font-size:13px;font-weight:850;letter-spacing:.035em;color:#225885}.stamp{background:#fff;border:1px solid #d5e9f9;border-radius:24px;padding:8px 12px;font-size:12px;font-weight:800;color:#386184}.panel{background:#fff;box-shadow:0 12px 42px #17447b17;border:1px solid #dcecf6;border-radius:28px;padding:clamp(18px,4vw,38px)}.hidden{display:none!important}
+.pill{display:inline-flex;align-items:center;background:#d9f6e5;border-radius:50px;padding:8px 14px;font-weight:850;color:#1b7047;font-size:13px}.hero{text-align:center;padding:18px 4px}.mascot{font-size:clamp(60px,13vw,105px);line-height:1.1;margin:4px 0 12px}.hero h1{font-size:clamp(31px,6vw,58px);line-height:1.07;margin:14px 0;color:#114477;letter-spacing:-.035em}.lead{font-size:clamp(16px,2vw,20px);line-height:1.55;max-width:660px;margin:10px auto 22px;color:#42627e}.missions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 26px;text-align:left}.mission{background:#f2f8ff;border:1px solid #d8eafb;border-radius:20px;padding:18px;min-height:152px}.mission .emoji{font-size:30px;display:block;margin-bottom:8px}.mission h3{margin:0 0 7px;font-size:17px}.mission p{margin:0;color:#506985;line-height:1.4;font-size:13px}
+.primary{border:0;background:#087c43;color:white;font-size:17px;font-weight:850;border-radius:16px;padding:15px 25px;min-height:54px;box-shadow:0 5px 0 #065931;transition:transform .12s}.primary:hover{background:#086d3c}.primary:active{transform:translateY(2px);box-shadow:0 3px 0 #065931}.secondary{border:2px solid #bcd9ee;background:#fff;color:#164b75;font-weight:800;border-radius:14px;padding:12px 19px;min-height:48px}.secondary:hover{background:#e6f5ff}.primary:disabled,.secondary:disabled{opacity:.46;box-shadow:none}
+.bar-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}.level-title{font-weight:950;font-size:clamp(22px,4vw,32px);margin:6px 0;color:#164f80}.instructions{margin:0 0 20px;color:#4a6981;line-height:1.55}.progress-row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#3c6688;font-weight:850;margin:16px 0 7px}.track{height:12px;background:#e6f1fb;border-radius:50px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#1abf75,#65d9a6);transition:width .2s}
+.layout-sort{display:grid;grid-template-columns:minmax(210px,1fr) minmax(280px,1.5fr);gap:22px;align-items:start}.animal-wrap{background:#f7fbff;border:2px solid #d6e9fa;border-radius:22px;padding:24px 14px;text-align:center}.animal{background:#fff;border:2px solid #b5dbef;border-radius:22px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;max-width:320px;margin:auto;user-select:none;cursor:grab;touch-action:manipulation}.animal[draggable=true]:active{cursor:grabbing}.animal .ico{font-size:clamp(62px,8vw,92px);line-height:1.05}.animal .animal-name{font-size:clamp(20px,3vw,27px);font-weight:900}.animal-tip{font-size:13px;color:#56738e;margin:12px 0 0}.group-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.group-grid .group:last-child{grid-column:1/-1}.group{min-height:80px;border:2px solid #c4e1f2;background:#f0f8ff;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:4px;padding:10px;font-weight:850;color:#194d76;transition:background .1s,border-color .1s}.group:hover,.group.dragover{background:#ddf1ff;border-color:#2a8ab8}.group .groupico{font-size:25px}.group .groupname{font-size:15px}.feedback{border-radius:15px;padding:13px 16px;background:#f0f6ff;color:#365d7b;font-weight:700;line-height:1.5;margin-top:16px;min-height:52px}.feedback.good{background:#d9f7e5;color:#116337}.feedback.bad{background:#fff0d4;color:#81501b}.feedback[role=status]{white-space:normal}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}.smallnote{color:#5b7490;font-size:12px}
+.memory-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:10px 0}.memory-card{border:2px solid #bcd9ef;border-radius:16px;background:#e2f2ff;color:#114777;min-height:128px;padding:10px 8px;font-weight:850;font-size:14px;line-height:1.3;display:flex;align-items:center;justify-content:center;text-align:center;overflow-wrap:anywhere}.memory-card.covered{font-size:42px;background:linear-gradient(150deg,#dff1ff,#bbebdb)}.memory-card.open{background:#fff;border-color:#4f9bd1}.memory-card.matched{background:#dff8e8;border-color:#5cc88f;color:#155c3d}.memory-card:disabled{opacity:1}.pair-help{font-weight:650;color:#4a6d87;font-size:14px;margin:0 0 12px}
+.order-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px;max-width:770px}.order-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:2px solid #cce2f3;background:#f3faff;border-radius:17px;padding:11px 13px}.num{display:grid;place-items:center;background:#e0ecf8;border-radius:50%;width:34px;height:34px;font-weight:900;color:#24608a}.stage-text{font-weight:800;line-height:1.35}.move-btns{display:flex;gap:7px}.move-btns button{width:42px;height:42px;display:grid;place-items:center;border:2px solid #c7dceb;background:white;border-radius:12px;color:#176099;font-size:20px;font-weight:900}.move-btns button:disabled{opacity:.3}.order-item[draggable=true]{cursor:grab}.order-item.dragover{outline:3px dashed #2d89b5}
+.result{text-align:center}.trophy{font-size:82px;margin:8px 0}.result h2{font-size:clamp(29px,5vw,43px);margin:8px 0;color:#114b7a}.bigscore{font-size:clamp(37px,7vw,63px);font-weight:950;color:#128051;margin:10px}.result p{line-height:1.6;color:#456781}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0;text-align:center}.stat{background:#f2f9ff;border-radius:16px;padding:14px 9px}.stat strong{display:block;font-size:24px;color:#1e5e8a}.stat span{font-size:12px;color:#4d6980}.note{font-size:12px;color:#56738a;text-align:center;margin:16px 0 0}
+@media(max-width:720px){.layout-sort{grid-template-columns:1fr;gap:14px}.animal{min-height:150px}.animal .ico{font-size:68px}.animal-wrap{padding:13px}.missions{grid-template-columns:1fr}.mission{min-height:unset}.memory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.memory-card{min-height:93px;font-size:13px}.shell{padding:10px 10px 28px}.panel{border-radius:22px;padding:17px}.order-item{grid-template-columns:auto minmax(0,1fr) auto;padding:10px 8px;gap:7px}.move-btns{gap:3px}.move-btns button{width:34px;height:40px}.summary{gap:6px}.stat{padding:12px 6px}.stat strong{font-size:19px}}
+@media(max-width:390px){.group{min-height:67px;padding:6px}.group .groupico{font-size:20px}.group .groupname{font-size:13px}.memory-card{min-height:82px}.top{align-items:flex-start}.brand{max-width:220px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+@media print{.top,.controls,.primary,.secondary,.missions{display:none!important}.panel{box-shadow:none}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="top"><div class="brand">🌿 CONOCIMIENTO DEL MEDIO · 3.º PRIMARIA</div><div class="stamp">UNIDAD 3 · JUEGO SIN TEST</div></header>
+<section class="panel" id="home">
+ <div class="hero"><span class="pill">🔬 APRENDER HACIENDO</span><div class="mascot" aria-hidden="true">🐬 🦉 🐸</div>
+ <h1>Laboratorio de<br>vertebrados</h1>
+ <p class="lead">¡Bienvenido a tu laboratorio! En lugar de responder preguntas, tendrás que <strong>clasificar animales, descubrir parejas y ordenar una transformación</strong>.</p></div>
+ <div class="missions"><div class="mission"><span class="emoji">🧩</span><h3>Nivel 1 · Clasificar</h3><p>Coloca 15 animales en su grupo de vertebrados.</p></div><div class="mission"><span class="emoji">🃏</span><h3>Nivel 2 · Memoria</h3><p>Encuentra cinco parejas de grupo y característica.</p></div><div class="mission"><span class="emoji">🐸</span><h3>Nivel 3 · Ordenar</h3><p>Reconstruye las cuatro etapas de la rana.</p></div></div>
+ <div style="text-align:center"><button class="primary" id="start">🚀 Entrar al laboratorio</button><p class="note">Sin cronómetro · Sin cuentas · Compatible con ratón y pantallas táctiles</p></div>
+</section>
+<section class="panel hidden" id="sort" aria-label="Nivel uno, clasificar animales">
+ <div class="bar-top"><span class="pill">🧩 NIVEL 1 · EXPLORADOR</span><span class="stamp" id="sortScore">0 / 250 puntos</span></div>
+ <h2 class="level-title">Cada animal en su grupo</h2>
+ <p class="instructions">Arrastra el animal a un grupo o <strong>toca el nombre del grupo</strong>. No pasa nada si te equivocas: recibirás una pista para aprender.</p>
+ <div class="progress-row"><span id="sortCount">Animal 1 de 15</span><span>Progreso del nivel</span></div><div class="track"><div class="fill" id="sortFill"></div></div>
+ <div class="layout-sort" style="margin-top:18px">
+  <div class="animal-wrap"><div id="animalCard" class="animal" draggable="true" tabindex="0" aria-label="Animal que hay que clasificar"><span class="ico" id="animalEmoji">🐬</span><span class="animal-name" id="animalName">Delfín</span></div><p class="animal-tip">💡 También puedes tocar uno de los cinco grupos.</p></div>
+  <div class="group-grid" id="groupGrid"><button class="group" data-group="mamiferos"><span class="groupico">🐻</span><span class="groupname">Mamíferos</span></button><button class="group" data-group="aves"><span class="groupico">🦉</span><span class="groupname">Aves</span></button><button class="group" data-group="reptiles"><span class="groupico">🐢</span><span class="groupname">Reptiles</span></button><button class="group" data-group="anfibios"><span class="groupico">🐸</span><span class="groupname">Anfibios</span></button><button class="group" data-group="peces"><span class="groupico">🐟</span><span class="groupname">Peces</span></button></div>
+ </div>
+ <div class="feedback" id="sortFeedback" role="status" aria-live="polite">¡A clasificar! Mira el primer animal.</div>
+ <div class="controls"><span class="smallnote" id="sortAttempts">10 puntos por acertar a la primera · 5 después de una pista</span><button class="primary hidden" id="sortNext">Siguiente animal →</button></div>
+</section>
+<section class="panel hidden" id="memory" aria-label="Nivel dos, juego de memoria">
+ <div class="bar-top"><span class="pill">🃏 NIVEL 2 · INVESTIGADOR</span><span class="stamp" id="memoryScore">0 / 250 puntos</span></div>
+ <h2 class="level-title">El secreto de las parejas</h2>
+ <p class="instructions">Destapa dos tarjetas. Une cada <strong>grupo de vertebrados</strong> con una de sus <strong>características</strong>. Cada pareja encontrada suma 10 puntos.</p>
+ <div class="progress-row"><span id="memoryCount">0 de 5 parejas</span><span>Progreso del nivel</span></div><div class="track"><div class="fill" id="memoryFill"></div></div>
+ <p class="pair-help" style="margin-top:16px">Toca dos tarjetas para descubrirlas. Si no son pareja, vuelve a taparlas y prueba otra combinación.</p>
+ <div class="memory-grid" id="memoryGrid"></div>
+ <div class="feedback" id="memoryFeedback" role="status" aria-live="polite">¡Encuentra las parejas ocultas!</div>
+ <div class="controls"><button class="secondary hidden" id="memoryClose">↶ Volver a tapar</button><button class="primary hidden" id="memoryNext">Continuar al nivel 3 →</button></div>
+</section>
+<section class="panel hidden" id="order" aria-label="Nivel tres, ordenar la metamorfosis de una rana">
+ <div class="bar-top"><span class="pill">🐸 NIVEL 3 · EXPERTO</span><span class="stamp" id="orderScore">0 / 250 puntos</span></div>
+ <h2 class="level-title">La gran transformación</h2>
+ <p class="instructions">Ordena las cuatro etapas de la <strong>metamorfosis de la rana</strong>, desde el principio hasta que es adulta. Usa las flechas ↑ y ↓ para mover las tarjetas. En ordenador, también puedes arrastrarlas.</p>
+ <div class="progress-row"><span>Del nacimiento a la rana adulta</span><span>Ordena 4 etapas</span></div><div class="track"><div class="fill" id="orderFill" style="width:0%"></div></div>
+ <ol class="order-list" id="orderList"></ol>
+ <div class="feedback" id="orderFeedback" role="status" aria-live="polite">Coloca primero lo que ocurre al principio de la vida de una rana.</div>
+ <div class="controls"><button class="secondary" id="orderReset">↶ Desordenar y probar</button><button class="primary" id="orderCheck">✓ Comprobar orden</button><button class="primary hidden" id="orderNext">Ver mi diploma 🏅</button></div>
+</section>
+<section class="panel hidden result" id="finish" aria-label="Diploma final">
+ <span class="pill">🌎 ¡MISIÓN COMPLETADA!</span><div class="trophy" aria-hidden="true">🏆</div>
+ <h2 id="endTitle">¡Guardían de los vertebrados!</h2>
+ <p>Has explorado los animales del tema 3 sin contestar un solo test.</p>
+ <div class="bigscore" id="endScore">0 / 250</div><p id="endMessage"></p>
+ <div class="summary"><div class="stat"><strong id="endSort">0 / 15</strong><span>Animales clasificados</span></div><div class="stat"><strong id="endPairs">0 / 5</strong><span>Parejas encontradas</span></div><div class="stat"><strong>✓</strong><span>Metamorfosis ordenada</span></div></div>
+ <p>🌿 <strong>Recuerda:</strong> conocer a los animales nos ayuda a respetarlos y a cuidar sus hábitats.</p>
+ <button class="primary" id="restart">🔁 Volver a jugar</button><p class="note">Actividad original de repaso basada en la unidad 3 de Conocimiento del Medio · 3.º Primaria</p>
+</section>
+<p class="note">CEIP San Gregorio · Juego interactivo independiente · v1.0 · Funciona sin conexión a internet</p>
+</main>
+<script>
+(function(){
+'use strict';
+var animals=[
+ {name:'Delfín',icon:'🐬',group:'mamiferos',fact:'El delfín es mamífero: sale del agua para respirar aire y alimenta a sus crías con leche.'},
+ {name:'Búho',icon:'🦉',group:'aves',fact:'El búho es un ave con plumas, pico y alas.'},
+ {name:'Serpiente',icon:'🐍',group:'reptiles',fact:'La serpiente es un reptil con escamas y sin patas.'},
+ {name:'Rana',icon:'🐸',group:'anfibios',fact:'La rana es un anfibio: de joven es renacuajo y cambia al crecer.'},
+ {name:'Tiburón',icon:'🦈',group:'peces',fact:'El tiburón es un pez cartilaginoso que respira por branquias.'},
+ {name:'Murciélago',icon:'🦇',group:'mamiferos',fact:'Aunque vuela, el murciélago es mamífero; sus extremidades delanteras son alas.'},
+ {name:'Pingüino',icon:'🐧',group:'aves',fact:'El pingüino es un ave porque tiene plumas, pico y alas, aunque no vuela.'},
+ {name:'Tortuga',icon:'🐢',group:'reptiles',fact:'La tortuga es un reptil con caparazón que respira aire por pulmones.'},
+ {name:'Tritón',icon:'💧',group:'anfibios',fact:'El tritón pertenece al grupo de anfibios con cola.'},
+ {name:'Sardina',icon:'🐟',group:'peces',fact:'La sardina es un pez óseo: tiene aletas, escamas y branquias.'},
+ {name:'Oso',icon:'🐻',group:'mamiferos',fact:'El oso es mamífero: tiene pelo y las madres alimentan a las crías con leche.'},
+ {name:'Pato',icon:'🦆',group:'aves',fact:'El pato es un ave nadadora, con plumas, pico y dedos unidos por una membrana.'},
+ {name:'Cocodrilo',icon:'🐊',group:'reptiles',fact:'El cocodrilo es un reptil de escamas; respira aire con pulmones.'},
+ {name:'Salamandra',icon:'🌿',group:'anfibios',fact:'La salamandra es un anfibio con cola y piel desnuda.'},
+ {name:'Raya',icon:'🌊',group:'peces',fact:'La raya es un pez cartilaginoso, igual que el tiburón.'}
+];
+var groupNames={mamiferos:'Mamíferos',aves:'Aves',reptiles:'Reptiles',anfibios:'Anfibios',peces:'Peces'};
+var pairs=[
+ {label:'🐻 Mamíferos',clue:'Pelo y leche para las crías'},
+ {label:'🦉 Aves',clue:'Plumas, pico y alas'},
+ {label:'🐢 Reptiles',clue:'Escamas y respiración por pulmones'},
+ {label:'🐸 Anfibios',clue:'Renacuajos que cambian al crecer'},
+ {label:'🐟 Peces',clue:'Aletas y branquias para respirar'}
+];
+var stages=[
+ {icon:'🥚',text:'La rana pone huevos en el agua.'},
+ {icon:'💧',text:'Nace un renacuajo con cola y branquias.'},
+ {icon:'🦵',text:'Al renacuajo le crecen las patas.'},
+ {icon:'🐸',text:'Se convierte en rana adulta y respira por pulmones.'}
+];
+var state={score:0,idx:0,misses:0,sortCorrect:0,pairsDone:0,firstCard:null,memoryLocked:false,wrongPair:false,cards:[],order:[2,0,3,1],checks:0,dragIndex:null,done:false};
+function $(id){return document.getElementById(id)}
+function show(id){['home','sort','memory','order','finish'].forEach(function(s){$(s).classList.toggle('hidden',s!==id)});window.scrollTo(0,0)}
+function score(){['sortScore','memoryScore','orderScore'].forEach(function(id){$(id).textContent=state.score+' / 250 puntos'})}
+function feedback(id,message,type){var el=$(id);el.textContent=message;el.className='feedback'+(type?' '+type:'')}
+function progress(which,n,total){$(which+'Fill').style.width=(n/total*100)+'%'}
+function begin(){state={score:0,idx:0,misses:0,sortCorrect:0,pairsDone:0,firstCard:null,memoryLocked:false,wrongPair:false,cards:[],order:[2,0,3,1],checks:0,dragIndex:null,done:false};score();renderAnimal();show('sort')}
+function renderAnimal(){if(state.idx>=animals.length){startMemory();return}var a=animals[state.idx];$('animalEmoji').textContent=a.icon;$('animalName').textContent=a.name;$('sortCount').textContent='Animal '+(state.idx+1)+' de '+animals.length;progress('sort',state.idx,animals.length);feedback('sortFeedback','Elige el grupo de «'+a.name+'».');$('sortNext').classList.add('hidden');$('sortAttempts').textContent='10 puntos al primer intento · 5 después de una pista';document.querySelectorAll('.group').forEach(function(el){el.disabled=false});state.misses=0}
+function sortPick(group){if(!$('sortNext').classList.contains('hidden'))return;var a=animals[state.idx];if(group===a.group){var points=state.misses===0?10:state.misses===1?5:0;state.score+=points;state.sortCorrect++;score();feedback('sortFeedback','✅ ¡Genial! +'+points+' puntos. '+a.fact,'good');finishAnimal();return}state.misses++;if(state.misses===1){feedback('sortFeedback','💡 Casi. '+({mamiferos:'Recuerda: las crías toman leche de su madre.',aves:'Busca animales con plumas y pico.',reptiles:'Tienen escamas y respiran por pulmones.',anfibios:'Piensa en los renacuajos y la metamorfosis.',peces:'Respiran por branquias y tienen aletas.'})[a.group]+' Prueba otra vez.','bad')}else{feedback('sortFeedback','📘 Este animal pertenece a «'+groupNames[a.group]+'». '+a.fact,'bad');finishAnimal()}}
+function finishAnimal(){document.querySelectorAll('.group').forEach(function(el){el.disabled=true});progress('sort',state.idx+1,animals.length);$('sortNext').textContent=state.idx===animals.length-1?'Pasar al juego de memoria →':'Siguiente animal →';$('sortNext').classList.remove('hidden')}
+function nextAnimal(){state.idx++;renderAnimal()}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp}return a}
+function startMemory(){var deck=[];pairs.forEach(function(p,i){deck.push({pair:i,text:p.label,matched:false});deck.push({pair:i,text:p.clue,matched:false})});state.cards=shuffle(deck);state.firstCard=null;state.pairsDone=0;state.memoryLocked=false;state.wrongPair=false;$('memoryClose').classList.add('hidden');$('memoryNext').classList.add('hidden');renderMemory();score();feedback('memoryFeedback','¡Encuentra las 5 parejas!');show('memory')}
+function renderMemory(){var grid=$('memoryGrid');grid.innerHTML='';state.cards.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.className='memory-card'+(c.matched?' matched':c.open?' open':' covered');b.textContent=c.matched||c.open?c.text:'❔';b.dataset.index=i;b.disabled=c.matched;b.setAttribute('aria-label',c.matched?'Pareja encontrada: '+c.text:c.open?'Tarjeta: '+c.text:'Tarjeta oculta '+(i+1));grid.appendChild(b)});$('memoryCount').textContent=state.pairsDone+' de 5 parejas';progress('memory',state.pairsDone,5)}
+function memoryTap(i){if(state.memoryLocked||state.done)return;var c=state.cards[i];if(!c||c.matched||c.open)return;c.open=true;if(state.firstCard===null){state.firstCard=i;renderMemory();feedback('memoryFeedback','Busca la tarjeta que forma pareja con esta.');return}var a=state.cards[state.firstCard];if(a.pair===c.pair){c.matched=true;a.matched=true;state.pairsDone++;state.score+=10;state.firstCard=null;score();renderMemory();feedback('memoryFeedback','✅ ¡Pareja encontrada! +10 puntos.','good');if(state.pairsDone===5){$('memoryNext').classList.remove('hidden');feedback('memoryFeedback','🎉 ¡Has descubierto las cinco parejas! Ya puedes pasar a la gran transformación.','good')}}else{state.memoryLocked=true;state.wrongPair=true;renderMemory();feedback('memoryFeedback','💡 Estas dos tarjetas no son pareja. Obsérvalas y vuelve a taparlas.','bad');$('memoryClose').classList.remove('hidden')}}
+function closeCards(){if(!state.wrongPair)return;state.cards.forEach(function(c){if(!c.matched)c.open=false});state.firstCard=null;state.memoryLocked=false;state.wrongPair=false;$('memoryClose').classList.add('hidden');renderMemory();feedback('memoryFeedback','¡Sigue intentándolo! Fíjate en las características.')}
+function startOrder(){state.order=[2,0,3,1];state.checks=0;state.done=false;state.dragIndex=null;$('orderCheck').disabled=false;$('orderReset').disabled=false;$('orderNext').classList.add('hidden');progress('order',0,1);feedback('orderFeedback','Usa las flechas para organizar las etapas.');renderOrder();score();show('order')}
+function renderOrder(){var ol=$('orderList');ol.innerHTML='';state.order.forEach(function(n,pos){var li=document.createElement('li');li.className='order-item';li.draggable=!state.done;li.dataset.pos=pos;var nr=document.createElement('span');nr.className='num';nr.textContent=pos+1;var middle=document.createElement('span');middle.className='stage-text';middle.textContent=stages[n].icon+' '+stages[n].text;var moves=document.createElement('span');moves.className='move-btns';var up=document.createElement('button');up.type='button';up.textContent='↑';up.dataset.dir='up';up.dataset.pos=pos;up.setAttribute('aria-label','Subir etapa '+(pos+1));up.disabled=pos===0||state.done;var down=document.createElement('button');down.type='button';down.textContent='↓';down.dataset.dir='down';down.dataset.pos=pos;down.setAttribute('aria-label','Bajar etapa '+(pos+1));down.disabled=pos===state.order.length-1||state.done;moves.appendChild(up);moves.appendChild(down);li.appendChild(nr);li.appendChild(middle);li.appendChild(moves);ol.appendChild(li)})}
+function swap(i,j){if(state.done||j<0||j>=state.order.length)return;var a=state.order[i];state.order[i]=state.order[j];state.order[j]=a;renderOrder()}
+function checkOrder(){if(state.done)return;var correct=state.order.every(function(n,i){return n===i});if(correct){var pts=state.checks===0?50:25;state.score+=pts;state.done=true;score();progress('order',1,1);feedback('orderFeedback','✅ ¡Secuencia perfecta! +'+pts+' puntos. De renacuajo a rana: ¡eso es la metamorfosis!','good');$('orderCheck').disabled=true;$('orderReset').disabled=true;$('orderNext').classList.remove('hidden');renderOrder()}else{state.checks++;feedback('orderFeedback','💡 El orden aún no está bien. Empieza por los huevos; después nace un renacuajo. Reorganiza las tarjetas y vuelve a comprobar.','bad')}}
+function finish(){show('finish');$('endScore').textContent=state.score+' / 250 puntos';$('endSort').textContent=state.sortCorrect+' / 15';$('endPairs').textContent=state.pairsDone+' / 5';var pct=state.score/250;if(pct>=.85){$('endTitle').textContent='¡Gran guardián de los vertebrados!';$('endMessage').textContent='¡Excelente trabajo! Has demostrado que conoces muy bien los vertebrados.'}else if(pct>=.6){$('endTitle').textContent='¡Explorador de animales!';$('endMessage').textContent='¡Buen trabajo! Cada pista te ha ayudado a aprender más.'}else{$('endTitle').textContent='¡Científico en entrenamiento!';$('endMessage').textContent='¡Has terminado las tres misiones! Puedes repetirlas para seguir aprendiendo.'}}
+$('start').addEventListener('click',begin);$('restart').addEventListener('click',begin);
+$('groupGrid').addEventListener('click',function(e){var b=e.target.closest('button[data-group]');if(b&&!b.disabled)sortPick(b.dataset.group)});$('sortNext').addEventListener('click',nextAnimal);
+$('animalCard').addEventListener('dragstart',function(e){if(!$('sortNext').classList.contains('hidden')){e.preventDefault();return}e.dataTransfer.setData('text/plain',String(state.idx));e.dataTransfer.effectAllowed='move'});
+document.querySelectorAll('.group').forEach(function(group){group.addEventListener('dragover',function(e){if(!group.disabled){e.preventDefault();group.classList.add('dragover')}});group.addEventListener('dragleave',function(){group.classList.remove('dragover')});group.addEventListener('drop',function(e){e.preventDefault();group.classList.remove('dragover');if(!group.disabled)sortPick(group.dataset.group)})});
+$('memoryGrid').addEventListener('click',function(e){var b=e.target.closest('button[data-index]');if(b)memoryTap(Number(b.dataset.index))});$('memoryClose').addEventListener('click',closeCards);$('memoryNext').addEventListener('click',startOrder);
+$('orderList').addEventListener('click',function(e){var b=e.target.closest('button[data-dir]');if(!b)return;var pos=Number(b.dataset.pos);swap(pos,pos+(b.dataset.dir==='up'?-1:1))});
+$('orderList').addEventListener('dragstart',function(e){var li=e.target.closest('li[data-pos]');if(!li||state.done){e.preventDefault();return}state.dragIndex=Number(li.dataset.pos);e.dataTransfer.setData('text/plain',String(state.dragIndex));e.dataTransfer.effectAllowed='move'});
+$('orderList').addEventListener('dragover',function(e){var li=e.target.closest('li[data-pos]');if(!li||state.done)return;e.preventDefault();li.classList.add('dragover')});
+$('orderList').addEventListener('dragleave',function(e){var li=e.target.closest('li[data-pos]');if(li)li.classList.remove('dragover')});
+$('orderList').addEventListener('drop',function(e){e.preventDefault();var li=e.target.closest('li[data-pos]');if(!li||state.dragIndex===null||state.done)return;var from=state.dragIndex;var to=Number(li.dataset.pos);var piece=state.order.splice(from,1)[0];state.order.splice(to,0,piece);state.dragIndex=null;renderOrder()});
+$('orderReset').addEventListener('click',function(){state.order=[2,0,3,1];renderOrder();feedback('orderFeedback','Vuelve a organizar las etapas con las flechas.')} );$('orderCheck').addEventListener('click',checkOrder);$('orderNext').addEventListener('click',finish);
+})();
+</script>
+</body></html>
